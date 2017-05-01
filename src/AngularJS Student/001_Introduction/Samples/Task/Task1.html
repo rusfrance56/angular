@@ -1,14 +1,39 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="MyModule">
 <head>
     <title>Task 1</title>
     <script src="../Libraries/angular.js"></script>
     <script src="model.js"></script>
 
-    <link href="../Libraries/bootstrap.css" rel="stylesheet" />
-    <link href="../Libraries/bootstrap-theme.css" rel="stylesheet" />
-</head>
-<body>
+    <link href="../Libraries/bootstrap.css" rel="stylesheet"/>
+    <link href="../Libraries/bootstrap-theme.css" rel="stylesheet"/>
 
+    <script>
+        var myModule = angular.module("MyModule", []);
+
+        myModule.controller("MyCtrl", function ($scope) {
+            $scope.list = model;
+        });
+    </script>
+</head>
+<body ng-controller="MyCtrl">
+<div class="container panel">
+    <div class="panel-default">
+        <div class="panel-heading">ITVDN News</div>
+        <div class="panel-body">
+            <div class="panel well" ng-repeat="article in list">
+                <div class="panel-heading">
+                    <h2>{{article.title}}</h2>
+                    <h5>{{article.published}}</h5>
+                </div>
+                <div class="panel-body">
+                    {{article.description}}
+                    <br/>
+                    <a class="btn btn-primary" href={{article.link}}>Читать дальше</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
